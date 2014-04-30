@@ -178,7 +178,7 @@ __END__
 
 =head1 NAME
 
-B<schedule> - format class schedules
+B<schedule> - typeset a weekly schedule
 
 =head1 SYNOPSIS
 
@@ -186,14 +186,13 @@ B<schedule> [B<-CpST>] [B<-f> I<size>] [B<-s> I<factor>] [I<infile> [I<outfile>]
 
 =head1 DESCRIPTION
 
-B<Schedule> is a L<perl(1)> script for creating charts in PostScript showing
-one's weekly schedule, usually for classes or the like.  Currently, only events
-that take place on weekdays are recognized.
+B<schedule> is a L<perl(1)> script for creating charts in PostScript showing
+one's weekly schedule of events.  Currently, only events that take place on
+weekdays are recognized.
 
-Input -- which must be formatted as described below under L</"INPUT FILES"> --
-is read from I<infile> (or standard input if no file is specified), and the
-resulting output is written to I<outfile> (or standard output if no file is
-specified).
+Input -- formatted as described below under L</"INPUT FORMAT"> -- is read from
+I<infile> (or standard input if no file is specified), and the resulting output
+is written to I<outfile> (or standard output if no file is specified).
 
 =head1 OPTIONS
 
@@ -201,11 +200,11 @@ specified).
 
 =item B<-C>
 
-Color the class boxes various colors instead of just grey.
+Color the event boxes various colors instead of just grey.
 
 =item B<-f> I<size>
 
-Set the size of the font used for class information to I<size> (default 10).
+Set the size of the font used for event information to I<size> (default 10).
 The names of the days of the week are typeset at I<size> * 1.2; the times of
 day are at I<size> / 1.2.
 
@@ -230,13 +229,13 @@ Do not show the times for each hour line.
 
 =back
 
-=head1 INPUT FILES
+=head1 INPUT FORMAT
 
 Each entry in the input file consists of three or more fields of text separated
 by tabs and/or newlines, and each entry is terminated by one or (if the B<-S>
 option was not given) more newlines.  Any text from a C<#> to the end of a line
 is ignored.  The first field in each entry consists of a set of letters which
-indicate on which days the class is held:
+indicate on which days the event occurs:
 
     M - Monday
     T - Tuesday
@@ -247,15 +246,15 @@ indicate on which days the class is held:
 These letters may be in any order & case.  Any characters outside this set are
 ignored.
 
-The second field of each entry specifies the time of day at which the class is
-held.  Times are specified in 24-hour format, the minutes being optional (and
+The second field of each entry specifies the time of day at which the event
+occurs.  Times are specified in 24-hour format, the minutes being optional (and
 optionally preceded by a colon or period), and the beginning & ending times are
 separated by a hyphen.  This is the only part of the entry for which the format
 matters; if the field is not formatted correctly, B<schedule> prints an error
 message and moves on to the next entry.
 
 The remaining fields of an entry consist of user-defined text which will be
-printed in separate lines in the class's box on the schedule.  Long lines will
+printed in separate lines in the event's box on the schedule.  Long lines will
 be broken at whitespace, and if a box contains more lines than can fit, the
 font size will be scaled down until they do.
 
