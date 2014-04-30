@@ -1,15 +1,4 @@
 #!/usr/bin/perl -w
-# To do:
-# - Improve the color palette
-# - Add support for weekend events
-# - Fix "squeezing" of overly long text so that the last line doesn't touch the
-#   bottom of the box
-# - Add support for 12-hour times
-# - Rewrite `drawClass' so that it takes the font size as an argument and sets
-#   it & the line height, thereby simplifying "squeezing" a bit
-# - Handle textless entries
-# - Allow literal hash marks to appear in text lines
-# - Add an -F option for setting the font?
 use strict;
 use Getopt::Std;
 use POSIX qw(floor ceil);
