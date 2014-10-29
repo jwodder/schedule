@@ -10,3 +10,4 @@
 - Add an -F option for setting the font?
 - Implement some sort of user control over the colors?
 - Handle events that go past midnight
+- Add a link to the repository to the documentation
