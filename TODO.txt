@@ -7,7 +7,16 @@
   & the line height, thereby simplifying "squeezing" a bit
 - Handle textless entries
 - Allow literal hash marks to appear in text lines
-- Add an -F option for setting the font?
-- Implement some sort of user control over the colors?
 - Handle events that go past midnight
 - Add a link to the repository to the documentation
+- Change the input format to a YAML list of dicts, each with the following
+  fields:
+ - name — a (possibly multiline) string or list of strings
+ - days
+ - time
+ - color (optional)
+- Support specifying builtin fonts with `--font` (The available builtin fonts
+  can be listed with `Canvas(*).getAvailableFonts()`)
+- Make the page size and margins configurable
+- Make into a Python package
+- Convert POD to reStructuredText
