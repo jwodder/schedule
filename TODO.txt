@@ -20,3 +20,8 @@
 - Make the page size and margins configurable
 - Make into a Python package
 - Convert POD to reStructuredText
+- Library: Allow configuring the fonts & font sizes used for the event texts,
+  day headers, and times separately?
+- Handle the day headers being too wide for their columns
+- Support "24:00" in input to mean "00:00"
+- Support events that end at 00:00
