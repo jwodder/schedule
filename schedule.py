@@ -82,6 +82,8 @@ class Schedule:
         if max_time is None:
             max_time = min(max(time2hours(ev.end_time)
                                for ev in self.all_events()) + 0.5, 24)
+        # Hours to label and draw a line across
+        hours = range(floor(min_time) + 1, ceil(max_time))
         line_height = font_size * 1.2
         # Font size of the day headers at the top of each column:
         header_size = font_size * 1.2
@@ -98,8 +100,7 @@ class Schedule:
         time_gap = 0.2 * canvas.stringWidth(':00')
         if show_times:
             time_width = time_gap + max(
-                canvas.stringWidth('{}:00'.format(i))
-                for i in range(ceil(min_time) + 1, floor(max_time))
+                canvas.stringWidth('{}:00'.format(i)) for i in hours
             )
         else:
             time_width = 0
@@ -131,7 +132,7 @@ class Schedule:
 
         # Lines across each hour:
         canvas.setDash([2], 0)
-        for i in range(floor(min_time+1), ceil(max_time)):
+        for i in hours:
             y = sched.uly - (i - min_time) * hour_height
             canvas.line(sched.ulx, y, sched.lrx, y)
 
@@ -143,7 +144,7 @@ class Schedule:
 
         if show_times:
             canvas.setFontSize(time_size)
-            for i in range(ceil(min_time) + 1, floor(max_time)):
+            for i in hours:
                 canvas.drawRightString(
                     sched.ulx - time_gap,
                     sched.uly - (i-min_time)*hour_height - time_size/2,
