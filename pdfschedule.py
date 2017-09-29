@@ -1,5 +1,16 @@
 #!/usr/bin/python3
-__requires__ = ['attrs~=17.1', 'click~=6.5', 'reportlab']
+"""
+Weekly schedule typesetter
+
+Visit <https://github.com/jwodder/schedule> for more information.
+"""
+
+__version__      = '0.1.0.dev1'
+__author__       = 'John Thorvald Wodder II'
+__author_email__ = 'pdfschedule@varonathe.org'
+__license__      = 'MIT'
+__url__          = 'https://github.com/jwodder/schedule'
+
 from   collections.abc           import Mapping
 from   datetime                  import time
 from   math                      import ceil, floor
@@ -71,7 +82,7 @@ class Schedule:
     def number_of_days(self):
         return len(self.days)
 
-    # The font and pagesize of the canvas must already have been set
+    # The font and pagesize of the canvas must already have been set.
     # x,y: upper-left corner of schedule to render (counting times along the
     # edge; `render` should not draw anything outside the given box)
     def render(self, canvas, width, height, x, y, font_size, show_times=True,
@@ -82,7 +93,7 @@ class Schedule:
         if max_time is None:
             max_time = min(max(time2hours(ev.end_time)
                                for ev in self.all_events()) + 0.5, 24)
-        # Hours to label and draw a line across
+        # List of hours to label and draw a line across
         hours = range(floor(min_time) + 1, ceil(max_time))
         line_height = font_size * 1.2
         # Font size of the day headers at the top of each column:
