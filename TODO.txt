@@ -9,7 +9,7 @@
 - Add a link to the repository to the documentation
 - Change the input format to a YAML list of dicts, each with the following
   fields:
- - name — a (possibly multiline) string or list of strings
+ - name (title?) — a (possibly multiline) string or list of strings
  - days
  - time
  - color (optional)

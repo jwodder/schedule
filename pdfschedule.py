@@ -235,7 +235,7 @@ class Box:
 
 @click.command(context_settings={"help_option_names": ["-h", "--help"]})
 @click.option('-C', '--color', is_flag=True)
-@click.option('-F', '--font')
+@click.option('-F', '--font', metavar='TTF_FILE')
 @click.option('-f', '--font-size', type=float, default=10)
 @click.option('-p', '--portrait', is_flag=True)
 @click.option('-s', '--scale', type=float)
