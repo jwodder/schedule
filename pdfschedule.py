@@ -234,12 +234,18 @@ class Box:
 
 
 @click.command(context_settings={"help_option_names": ["-h", "--help"]})
-@click.option('-C', '--color', is_flag=True)
-@click.option('-F', '--font', metavar='TTF_FILE')
-@click.option('-f', '--font-size', type=float, default=10)
-@click.option('-p', '--portrait', is_flag=True)
-@click.option('-s', '--scale', type=float)
-@click.option('-T', '--no-times', is_flag=True)
+@click.option('-C', '--color', is_flag=True,
+              help='Use more colors for the event boxes than just grey')
+@click.option('-F', '--font', metavar='TTF_FILE',
+              help='Typeset text in given font')
+@click.option('-f', '--font-size', type=float, default=10, show_default=True,
+              help='Size of normal text')
+@click.option('-p', '--portrait', is_flag=True,
+              help='Output in portrait mode instead of landscape')
+@click.option('-s', '--scale', type=float,
+              help="Scale down the table's dimensions by the given factor")
+@click.option('-T', '--no-times', is_flag=True,
+              help='Do not show the times for each hour line')
 @click.argument('infile', type=click.File(), default='-')
 @click.argument('outfile', type=click.File('wb'), default='-')
 def main(infile, outfile, color, font, font_size, portrait, scale, no_times):

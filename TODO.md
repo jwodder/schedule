@@ -37,6 +37,8 @@
 - Library usage:
     - Allow configuring the fonts & font sizes used for the event texts, day
       headers, and times separately?
+    - Change `Schedule` to a `reportlab.*.Flowable` subclass (or factory
+      thereof?)
 
 - Documentation:
     - Write a README
