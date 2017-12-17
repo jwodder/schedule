@@ -246,6 +246,8 @@ class Box:
               help="Scale down the table's dimensions by the given factor")
 @click.option('-T', '--no-times', is_flag=True,
               help='Do not show the times for each hour line')
+@click.version_option(__version__, '-V', '--version',
+                      message='pdfschedule %(version)s')
 @click.argument('infile', type=click.File(), default='-')
 @click.argument('outfile', type=click.File('wb'), default='-')
 def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
