@@ -23,6 +23,7 @@ from   reportlab.lib.units       import inch
 from   reportlab.pdfbase         import pdfmetrics
 from   reportlab.pdfbase.ttfonts import TTFont
 from   reportlab.pdfgen.canvas   import Canvas
+import yaml
 
 EM = 0.6  ### TODO: Eliminate
 
@@ -264,25 +265,8 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
         page_width, page_height = pagesizes.landscape(pagesizes.letter)
     colors = COLORS if color else [GREY]
     sched = Schedule(WEEKDAYS_EN)
-    for i, line in enumerate(infile):
-        line = line.rstrip('\r\n').partition('#')[0]
-        if not line.strip():
-            continue
-        days, timestr, *text = line.split('\t')
-        m = re.match(r'^\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*'
-                     r'-\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*$', timestr)
-        if not m:
-            click.echo('Invalid time: ' + repr(timestr), err=True)
-            continue
-        start = time(int(m.group(1)), int(m.group(2) or 0))
-        end   = time(int(m.group(3)), int(m.group(4) or 0))
-        sched.add_event(Event(
-            start_time = start,
-            end_time   = end,
-            text       = text,
-            color      = colors[i % len(colors)],
-            days       = [d for d,rgx in DAY_REGEXES if re.search(rgx, days)],
-        ))
+    for ev in read_events(infile, colors=colors):
+        sched.add_event(ev)
     c = Canvas(outfile, (page_width, page_height))
     c.setFont(font_name, font_size)
     if scale is not None:
@@ -303,6 +287,33 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
     )
     c.showPage()
     c.save()
+
+def read_events(infile, colors):
+    indata = yaml.safe_load(infile)
+    if not isinstance(indata, list):
+        raise click.UsageError('Input must be a YAML list')
+    for i, entry in enumerate(indata):
+        text = entry.get("name", '').splitlines()
+        try:
+            days = entry["days"]
+            timestr = entry["time"]
+        except KeyError as e:
+            raise click.UsageError(
+                '{!r} field missing from event #{}'.format(str(e), i+1)
+            )
+        m = re.match(r'^\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*'
+                     r'-\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*$', timestr)
+        if not m:
+            raise click.UsageError('Invalid time: ' + repr(timestr), err=True)
+        start = time(int(m.group(1)), int(m.group(2) or 0))
+        end   = time(int(m.group(3)), int(m.group(4) or 0))
+        yield Event(
+            start_time = start,
+            end_time   = end,
+            text       = text,
+            color      = colors[i % len(colors)],
+            days       = [d for d,rgx in DAY_REGEXES if re.search(rgx, days)],
+        )
 
 def time2hours(t):
     return t.hour + (t.minute + (t.second + t.microsecond/1000000)/60)/60
