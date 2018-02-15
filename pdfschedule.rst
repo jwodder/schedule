@@ -59,35 +59,34 @@ OPTIONS
 INPUT FORMAT
 ^^^^^^^^^^^^
 
-Any input text from a ``#`` to the end of a line is ignored.
+Input is a `YAML <http://yaml.org>`_ list of dictionaries.  Each dictionary
+represents a single weekly event and must contain the following keys:
 
-Each nonempty input line must consist of three or more tab-separated fields
-describing a single weekly event.  The first field specifies one or more days
-of the week on which the event occurs using the following single-letter codes:
+``name``
+   *(optional)* The (possibly multiline) text to display in the event's box on
+   the schedule
 
-    ======  =========
-    Letter  Day
-    ======  =========
-    M       Monday
-    T       Tuesday
-    W       Wednesday
-    H or R  Thursday
-    F       Friday
-    ======  =========
+``days``
+   The days of the week on which the event occurs, specified as a string of one
+   or more of the following single-letter codes:
 
-These letters may be in any order & case.  Characters outside this set are
-ignored.
+   ======  =========
+   Letter  Day
+   ======  =========
+   M       Monday
+   T       Tuesday
+   W       Wednesday
+   H or R  Thursday
+   F       Friday
+   ======  =========
 
-The second field of each entry specifies the start & end times of the event in
-the format ``HH:MM - HH:MM``.  Times are specified in 24-hour format, the
-minutes being optional (and optionally separated from the hour by a colon or
-period).  If the field is not formatted correctly, :program:`pdfschedule`
-prints an error message, discards the line, and moves on to the next entry.
+   These letters may be in any order & case.  Characters outside this set are
+   ignored.
 
-The remaining fields of each entry are user-defined text which will be printed
-one per line in the event's box on the schedule.  Long lines are broken at
-whitespace, and if a box contains more lines than can fit, the font size will
-be scaled down until they do.
+``time``
+   The start & end times of the event in the format ``HH:MM - HH:MM``.  Times
+   are specified in 24-hour format, the minutes being optional (and optionally
+   separated from the hour by a colon or period).
 
 AUTHOR
 ^^^^^^
