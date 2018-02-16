@@ -6,6 +6,12 @@
   days: MTWRF
   time: 9-17
 
+- name: |
+    Exercise class
+    (The one on Main Street)
+  days: W
+  time: 17:00 - 18:00
+
 - name: Have they brought back my favorite show yet?
   days: R
   time: 19-19.30
