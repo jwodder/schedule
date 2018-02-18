@@ -16,17 +16,18 @@ from   collections.abc           import Mapping
 from   datetime                  import time
 from   math                      import ceil, floor
 import re
-from   textwrap                  import wrap
+from   xml.sax.saxutils          import escape
 import attr
 import click
 from   reportlab.lib             import pagesizes
+from   reportlab.lib.enums       import TA_CENTER
+from   reportlab.lib.styles      import ParagraphStyle
 from   reportlab.lib.units       import inch
 from   reportlab.pdfbase         import pdfmetrics
 from   reportlab.pdfbase.ttfonts import TTFont
 from   reportlab.pdfgen.canvas   import Canvas
+from   reportlab.platypus        import Paragraph, Frame, KeepInFrame
 import yaml
-
-EM = 0.6  ### TODO: Eliminate
 
 WEEKDAYS_EN  = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 FULL_WEEK_EN = ['Sunday'] + WEEKDAYS_EN + ['Saturday']
@@ -126,7 +127,6 @@ class Schedule:
         )
         hour_height = sched.height / (max_time - min_time)
         day_width = sched.width / self.number_of_days
-        line_width = floor(day_width / (font_size * EM))
 
         # Border around schedule and day headers:
         canvas.rect(sched.ulx, sched.lry, sched.width, area.height)
@@ -165,7 +165,12 @@ class Schedule:
                 )
 
         # Events:
-        canvas.setFontSize(font_size)
+        evstyle = ParagraphStyle(
+            'pdfschedule',
+            fontSize=font_size,
+            leading=line_height,
+            alignment=TA_CENTER,
+        )
         for i, day in enumerate(self.days):
             dx = sched.ulx + day_width * i
             for ev in self.events_on_day(day):
@@ -180,22 +185,16 @@ class Schedule:
                 canvas.setFillColorRGB(*ev.color)
                 canvas.rect(*ebox.rect(), stroke=1, fill=1)
                 canvas.setFillColorRGB(0,0,0)
-
                 # Event text:
-                ### TODO: Use PLATYPUS or whatever for this part:
-                text = sum((wrap(t, line_width) for t in ev.text), [])
-                tmp_size = None
-                if len(text) * line_height > ebox.height:
-                    tmp_size = ebox.height / len(text) / 1.2
-                    canvas.setFontSize(tmp_size)
-                    line_height = tmp_size * 1.2
-                y = ebox.lry + ebox.height / 2 + len(text) * line_height / 2
-                for t in text:
-                    y -= line_height
-                    canvas.drawCentredString(ebox.ulx + day_width/2, y, t)
-                if tmp_size is not None:
-                    canvas.setFontSize(font_size)
-                    line_height = font_size * 1.2
+                # <https://stackoverflow.com/a/21294357/744178>
+                ### XXX: Problems to fix:
+                ### - Text isn't centered vertically in boxes
+                ### - Long lines aren't wrapped
+                Frame(*ebox.rect()).addFromList([
+                    KeepInFrame(ebox.width, ebox.height, [
+                        Paragraph(escape(ev.text).replace('\n', '<br/>'), evstyle)
+                    ], mode='shrink', hAlign='CENTER', vAlign='CENTER')
+                ], canvas)
 
 
 @attr.s
@@ -299,7 +298,7 @@ def read_events(infile, colors):
     if not isinstance(indata, list):
         raise click.UsageError('Input must be a YAML list')
     for i, entry in enumerate(indata):
-        text = entry.get("name", '').splitlines()
+        text = entry.get("name", '')
         try:
             days = entry["days"]
             timestr = entry["time"]
