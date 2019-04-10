@@ -31,9 +31,7 @@
       thereof?)
 
 - Documentation:
-    - Write a README
-    - Add a link to the repository to the documentation
     - Add docstrings
-    - Include example input in docs
+    - Come up with a better example schedule
 
 - Release on PyPI
