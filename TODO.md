@@ -35,5 +35,3 @@
 - Documentation:
     - Add more docstrings
     - Come up with a better example schedule
-
-- Release on PyPI

@@ -1,7 +1,10 @@
-.. image:: http://www.repostatus.org/badges/latest/wip.svg
-    :target: http://www.repostatus.org/#wip
-    :alt: Project Status: WIP — Initial development is in progress, but there
-          has not yet been a stable, usable release suitable for the public.
+.. image:: http://www.repostatus.org/badges/latest/active.svg
+    :target: http://www.repostatus.org/#active
+    :alt: Project Status: Active — The project has reached a stable, usable
+          state and is being actively developed.
+
+.. image:: https://img.shields.io/pypi/pyversions/pdfschedule.svg
+    :target: https://pypi.org/project/pdfschedule/
 
 .. image:: https://img.shields.io/github/license/jwodder/schedule.svg
     :target: https://opensource.org/licenses/MIT
@@ -11,8 +14,8 @@
     :target: https://saythanks.io/to/jwodder
 
 `GitHub <https://github.com/jwodder/schedule>`_
+| `PyPI <https://pypi.org/project/pdfschedule/>`_
 | `Issues <https://github.com/jwodder/schedule/issues>`_
-
 
 ``pdfschedule`` is a Python 3 script for creating PDF documents showing
 one's weekly schedule of events.  Currently, only events that take place on
@@ -129,4 +132,4 @@ The following input file::
 
 produces (using the default options) an output file that looks like this:
 
-.. image:: https://github.com/jwodder/schedule/raw/master/examples/example01.png
+.. image:: https://github.com/jwodder/schedule/raw/v0.1.0/examples/example01.png
