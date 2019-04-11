@@ -2,7 +2,8 @@
 """
 Weekly schedule typesetter
 
-Visit <https://github.com/jwodder/schedule> for more information.
+Run ``pdfschedule --help`` or visit <https://github.com/jwodder/schedule> for
+more information.
 """
 
 __version__      = '0.1.0.dev1'
@@ -252,6 +253,11 @@ class Box:
 @click.argument('infile', type=click.File(), default='-')
 @click.argument('outfile', type=click.File('wb'), default='-')
 def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
+    """
+    Weekly schedule typesetter
+
+    Visit <https://github.com/jwodder/schedule> for more information.
+    """
     if font is not None:
         font_name = 'CustomFont'
         ### TODO: Use the basename of the filename as the font name?  (Could
