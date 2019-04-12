@@ -18,8 +18,7 @@
 | `Issues <https://github.com/jwodder/schedule/issues>`_
 
 ``pdfschedule`` is a Python 3 script for creating PDF documents showing
-one's weekly schedule of events.  Currently, only events that take place on
-weekdays are recognized.
+one's weekly schedule of events.
 
 
 Installation
@@ -82,20 +81,21 @@ represents a single weekly event and must contain the following keys:
 
 ``days``
    The days of the week on which the event occurs, specified as a string of one
-   or more of the following single-letter codes:
+   or more of the following abbreviations in any order:
 
-   ======  =========
-   Letter  Day
-   ======  =========
-   M       Monday
-   T       Tuesday
-   W       Wednesday
-   H or R  Thursday
-   F       Friday
-   ======  =========
+   ===================================  =========
+   Abbreviation                         Day
+   ===================================  =========
+   ``Su`` or ``Sun``                    Sunday
+   ``M`` or ``Mo`` or ``Mon``           Monday
+   ``T`` or ``Tu`` or ``Tue``           Tuesday
+   ``W`` or ``We`` or ``Wed``           Wednesday
+   ``H`` or ``R`` or ``Th`` or ``Thu``  Thursday
+   ``F`` or ``Fr`` or ``Fri``           Friday
+   ``Sa`` or ``Sat``                    Saturday
+   ===================================  =========
 
-   These letters may be in any order & case.  Characters outside this set are
-   ignored.
+   Case is significant.  Unknown abbreviations are ignored.
 
 ``time``
    The start & end times of the event in the format ``HH:MM - HH:MM``.  Times
@@ -132,4 +132,4 @@ The following input file::
 
 produces (using the default options) an output file that looks like this:
 
-.. image:: https://github.com/jwodder/schedule/raw/v0.1.0/examples/example01.png
+.. image:: https://github.com/jwodder/schedule/raw/master/examples/example01.png

@@ -6,7 +6,7 @@ Run ``pdfschedule --help`` or visit <https://github.com/jwodder/schedule> for
 more information.
 """
 
-__version__      = '0.1.0'
+__version__      = '0.2.0.dev1'
 __author__       = 'John Thorvald Wodder II'
 __author_email__ = 'pdfschedule@varonathe.org'
 __license__      = 'MIT'
@@ -32,11 +32,13 @@ WEEKDAYS_EN  = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 FULL_WEEK_EN = ['Sunday'] + WEEKDAYS_EN + ['Saturday']
 
 DAY_REGEXES = [
-    ('Monday', '[Mm]'),
-    ('Tuesday', '[Tt]'),
-    ('Wednesday', '[Ww]'),
-    ('Thursday', '[HhRr]'),
-    ('Friday', '[Ff]'),
+    ('Sunday', 'Sun?'),
+    ('Monday', 'M(on?)?'),
+    ('Tuesday', 'T(ue?)?'),
+    ('Wednesday', 'W(ed?)?'),
+    ('Thursday', 'Thu?|H|R'),
+    ('Friday', 'F(ri?)?'),
+    ('Saturday', 'Sat?'),
 ]
 
 GREY = (0.8, 0.8, 0.8)
@@ -270,7 +272,7 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
     else:
         page_width, page_height = pagesizes.landscape(pagesizes.letter)
     colors = COLORS if color else [GREY]
-    sched = Schedule(WEEKDAYS_EN)
+    sched = Schedule(FULL_WEEK_EN)
     for ev in read_events(infile, colors=colors):
         sched.add_event(ev)
     c = Canvas(outfile, (page_width, page_height))

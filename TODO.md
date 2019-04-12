@@ -1,6 +1,5 @@
-- Add support for weekend events
-    - Add an option for hiding weekends
-    - Add an option for making the week start on Monday instead of Sunday
+- Add an option for hiding weekends
+- Add an option for making the week start on Monday instead of Sunday
 - Support events that end at 00:00
 - Handle events that go past midnight
 
