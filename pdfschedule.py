@@ -70,7 +70,6 @@ class Schedule:
             self._day_names = day_names
 
     def add_event(self, event):
-        ### TODO: Warn if the event references any unknown days?
         self.events.append(event)
 
     def day_names(self):
@@ -250,11 +249,14 @@ class Box:
               help="Scale down the table's dimensions by the given factor")
 @click.option('-T', '--no-times', is_flag=True,
               help='Do not show the times for each hour line')
+@click.option('--no-weekends', is_flag=True,
+              help='Do not show Sunday and Saturday')
 @click.version_option(__version__, '-V', '--version',
                       message='pdfschedule %(version)s')
 @click.argument('infile', type=click.File(), default='-')
 @click.argument('outfile', type=click.File('wb'), default='-')
-def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
+def main(infile, outfile, color, font, font_size, portrait, scale, no_times,
+         no_weekends):
     """
     Weekly schedule typesetter
 
@@ -272,7 +274,7 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times):
     else:
         page_width, page_height = pagesizes.landscape(pagesizes.letter)
     colors = COLORS if color else [GREY]
-    sched = Schedule(FULL_WEEK_EN)
+    sched = Schedule(WEEKDAYS_EN if no_weekends else FULL_WEEK_EN)
     for ev in read_events(infile, colors=colors):
         sched.add_event(ev)
     c = Canvas(outfile, (page_width, page_height))

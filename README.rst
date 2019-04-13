@@ -66,6 +66,8 @@ Options
 
 - ``-T``, ``--no-times`` — Do not show the times for each hour line.
 
+- ``--no-weekends`` — Do not show Sunday and Saturday.
+
 
 .. _input_format:
 
