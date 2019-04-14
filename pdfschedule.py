@@ -30,6 +30,7 @@ EM = 0.6  ### TODO: Eliminate
 
 WEEKDAYS_EN  = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 FULL_WEEK_EN = ['Sunday'] + WEEKDAYS_EN + ['Saturday']
+FULL_WEEK_MON_EN = WEEKDAYS_EN + ['Saturday', 'Sunday']
 
 DAY_REGEXES = [
     ('Sunday', 'Sun?'),
@@ -243,6 +244,8 @@ class Box:
               help='Typeset text in given font')
 @click.option('-f', '--font-size', type=float, default=10, show_default=True,
               help='Size of normal text')
+@click.option('-M', '--start-monday', is_flag=True,
+              help='Use Monday as first day of week')
 @click.option('-p', '--portrait', is_flag=True,
               help='Output in portrait mode instead of landscape')
 @click.option('-s', '--scale', type=float,
@@ -256,7 +259,7 @@ class Box:
 @click.argument('infile', type=click.File(), default='-')
 @click.argument('outfile', type=click.File('wb'), default='-')
 def main(infile, outfile, color, font, font_size, portrait, scale, no_times,
-         no_weekends):
+         no_weekends, start_monday):
     """
     Weekly schedule typesetter
 
@@ -274,7 +277,13 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times,
     else:
         page_width, page_height = pagesizes.landscape(pagesizes.letter)
     colors = COLORS if color else [GREY]
-    sched = Schedule(WEEKDAYS_EN if no_weekends else FULL_WEEK_EN)
+    if no_weekends:
+        week = WEEKDAYS_EN
+    elif start_monday:
+        week = FULL_WEEK_MON_EN
+    else:
+        week = FULL_WEEK_EN
+    sched = Schedule(week)
     for ev in read_events(infile, colors=colors):
         sched.add_event(ev)
     c = Canvas(outfile, (page_width, page_height))

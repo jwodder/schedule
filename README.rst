@@ -56,6 +56,9 @@ Options
   event information to ``size`` (default 10).  The names of the days of the
   week are typeset at ``size * 1.2``; the times of day are at ``size / 1.2``.
 
+- ``-M``, ``--start-monday`` — Use Monday as the first day of the week instead
+  of Sunday.
+
 - ``-p``, ``--portrait`` — Typeset the table in "portrait mode," i.e., with the
   shorter side of the paper as the width.  The default is to typeset it in
   "landscape mode."
