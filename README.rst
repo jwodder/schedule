@@ -38,8 +38,8 @@ Usage
     pdfschedule [<OPTIONS>] [<infile> [<outfile>]]
 
 Input — formatted as described below under "`Input Format <input_format_>`_" —
-is read from ``infile`` (or standard input if no file is specified), and the
-resulting PDF is written to ``outfile`` (or standard output if no file is
+is read from ``<infile>`` (or standard input if no file is specified), and the
+resulting PDF is written to ``<outfile>`` (or standard output if no file is
 specified).
 
 
@@ -53,8 +53,9 @@ Options
   the text font.  By default, all text is typeset in Helvetica.
 
 - ``-f <size>``, ``--font-size <size>`` — Set the size of the font used for
-  event information to ``size`` (default 10).  The names of the days of the
-  week are typeset at ``size * 1.2``; the times of day are at ``size / 1.2``.
+  event information to ``<size>`` (default 10).  The names of the days of the
+  week are typeset at ``<size> * 1.2``; the times of day are at ``<size> /
+  1.2``.
 
 - ``-M``, ``--start-monday`` — Use Monday as the first day of the week instead
   of Sunday.
@@ -64,7 +65,7 @@ Options
   "landscape mode."
 
 - ``-s <factor>``, ``--scale <factor>`` — Divide the length of each side of the
-  table by ``factor``.  Without this option, the table fills the whole page,
+  table by ``<factor>``.  Without this option, the table fills the whole page,
   except for a one-inch margin on each side.
 
 - ``-T``, ``--no-times`` — Do not show the times for each hour line.
@@ -86,7 +87,8 @@ represents a single weekly event and must contain the following keys:
 
 ``days``
    The days of the week on which the event occurs, specified as a string of one
-   or more of the following abbreviations in any order:
+   or more of the following abbreviations in any order (optionally with
+   intervening whitespace and/or commas):
 
    ===================================  =========
    Abbreviation                         Day
@@ -124,7 +126,7 @@ The following input file::
     - name: |
         Exercise class
         (The one on Main Street)
-      days: W
+      days: M, W, F
       time: 17:00 - 18:00
 
     - name: Have they brought back my favorite show yet?
@@ -134,6 +136,10 @@ The following input file::
     - name: Poor decisions
       days: F
       time: 22-23.59
+
+    - name: Sleep in
+      days: SatSun
+      time: 7-12
 
 produces (using the default options) an output file that looks like this:
 

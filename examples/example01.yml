@@ -9,7 +9,7 @@
 - name: |
     Exercise class
     (The one on Main Street)
-  days: W
+  days: M, W, F
   time: 17:00 - 18:00
 
 - name: Have they brought back my favorite show yet?
@@ -19,3 +19,7 @@
 - name: Poor decisions
   days: F
   time: 22-23.59
+
+- name: Sleep in
+  days: SatSun
+  time: 7-12
