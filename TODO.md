@@ -16,8 +16,6 @@
     - Handle textless entries
 
 - Command-line usage:
-    - Support specifying builtin fonts with `--font` (The available builtin
-      fonts can be listed with `Canvas(*).getAvailableFonts()`)
     - Make the page size and margins configurable
     - Support specifying the minimum & maximum times to draw
     - When an input filename is given but no output filename, write to the

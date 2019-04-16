@@ -49,13 +49,14 @@ Options
 - ``-C``, ``--color`` — Color the event boxes various colors instead of just
   grey.
 
-- ``-F <ttf-file>``, ``--font <ttf-file>`` — Use the given ``.ttf`` file for
-  the text font.  By default, all text is typeset in Helvetica.
+- ``-F <font>``, ``--font <font>`` — Typeset text in the given font.
+  ``<font>`` must be either the name of a builtin PostScript font or the path
+  to a ``.ttf`` file.  By default, text is typeset in Helvetica.
 
 - ``-f <size>``, ``--font-size <size>`` — Set the size of the font used for
   event information to ``<size>`` (default 10).  The names of the days of the
-  week are typeset at ``<size> * 1.2``; the times of day are at ``<size> /
-  1.2``.
+  week are typeset at ``<size> * 1.2``; the times of day are typeset at
+  ``<size> / 1.2``.
 
 - ``-M``, ``--start-monday`` — Use Monday as the first day of the week instead
   of Sunday.
@@ -143,4 +144,4 @@ The following input file::
 
 produces (using the default options) an output file that looks like this:
 
-.. image:: https://github.com/jwodder/schedule/raw/v0.2.0/examples/example01.png
+.. image:: https://github.com/jwodder/schedule/raw/master/examples/example01.png

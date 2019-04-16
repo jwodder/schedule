@@ -1,3 +1,7 @@
+v0.3.0 (in development)
+-----------------------
+- `--font` now accepts names of builtin fonts
+
 v0.2.0 (2019-04-16)
 -------------------
 - Support for weekend events added

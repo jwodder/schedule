@@ -6,7 +6,7 @@ Run ``pdfschedule --help`` or visit <https://github.com/jwodder/schedule> for
 more information.
 """
 
-__version__      = '0.2.0'
+__version__      = '0.3.0.dev1'
 __author__       = 'John Thorvald Wodder II'
 __author_email__ = 'pdfschedule@varonathe.org'
 __license__      = 'MIT'
@@ -240,8 +240,8 @@ class Box:
 @click.command(context_settings={"help_option_names": ["-h", "--help"]})
 @click.option('-C', '--color', is_flag=True,
               help='Use more colors for the event boxes than just grey')
-@click.option('-F', '--font', metavar='TTF_FILE',
-              help='Typeset text in given font')
+@click.option('-F', '--font', default='Helvetica', show_default=True,
+              help='Typeset text in given font', metavar='NAME|TTF_FILE')
 @click.option('-f', '--font-size', type=float, default=10, show_default=True,
               help='Size of normal text')
 @click.option('-M', '--start-monday', is_flag=True,
@@ -265,13 +265,14 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times,
 
     Visit <https://github.com/jwodder/schedule> for more information.
     """
-    if font is not None:
+    if font in available_fonts():
+        font_name = font
+    else:
+        # Assume we've been given a path to a .ttf file
         font_name = 'CustomFont'
         ### TODO: Use the basename of the filename as the font name?  (Could
         ### that ever cause problems?)
         pdfmetrics.registerFont(TTFont(font_name, font))
-    else:
-        font_name = 'Helvetica'
     if portrait:
         page_width, page_height = pagesizes.portrait(pagesizes.letter)
     else:
@@ -341,6 +342,10 @@ def timediff(t1, t2):
     # Returns the difference between two `datetime.time` objects as a number of
     # hours
     return time2hours(t2) - time2hours(t1)
+
+def available_fonts():
+    return Canvas('').getAvailableFonts()
+    #return pdfmetrics.standardFonts
 
 if __name__ == '__main__':
     main()
