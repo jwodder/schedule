@@ -143,4 +143,4 @@ The following input file::
 
 produces (using the default options) an output file that looks like this:
 
-.. image:: https://github.com/jwodder/schedule/raw/master/examples/example01.png
+.. image:: https://github.com/jwodder/schedule/raw/v0.2.0/examples/example01.png
