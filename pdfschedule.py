@@ -15,7 +15,9 @@ __url__          = 'https://github.com/jwodder/schedule'
 from   collections.abc           import Mapping
 from   datetime                  import time
 from   math                      import ceil, floor
+from   pathlib                   import Path
 import re
+import sys
 from   textwrap                  import wrap
 import attr
 import click
@@ -257,7 +259,7 @@ class Box:
 @click.version_option(__version__, '-V', '--version',
                       message='pdfschedule %(version)s')
 @click.argument('infile', type=click.File(), default='-')
-@click.argument('outfile', type=click.File('wb'), default='-')
+@click.argument('outfile', type=click.File('wb'), required=False)
 def main(infile, outfile, color, font, font_size, portrait, scale, no_times,
          no_weekends, start_monday):
     """
@@ -287,6 +289,12 @@ def main(infile, outfile, color, font, font_size, portrait, scale, no_times,
     sched = Schedule(week)
     for ev in read_events(infile, colors=colors):
         sched.add_event(ev)
+    if outfile is None:
+        if infile is sys.stdin:
+            outfile_name = '-'
+        else:
+            outfile_name = str(Path(infile.name).with_suffix('.pdf'))
+        outfile = click.open_file(outfile_name, 'wb')
     c = Canvas(outfile, (page_width, page_height))
     c.setFont(font_name, font_size)
     if scale is not None:

@@ -38,9 +38,9 @@ Usage
     pdfschedule [<OPTIONS>] [<infile> [<outfile>]]
 
 Input — formatted as described below under "`Input Format <input_format_>`_" —
-is read from ``<infile>`` (or standard input if no file is specified), and the
-resulting PDF is written to ``<outfile>`` (or standard output if no file is
-specified).
+is read from ``<infile>`` (defaulting to standard input), and the resulting PDF
+is written to ``<outfile>`` (defaulting to ``<infile>`` with its file extension
+changed to ``.pdf``, or to standard output if ``<infile>`` is standard input).
 
 
 Options

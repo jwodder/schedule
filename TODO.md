@@ -18,8 +18,6 @@
 - Command-line usage:
     - Make the page size and margins configurable
     - Support specifying the minimum & maximum times to draw
-    - When an input filename is given but no output filename, write to the
-      input filename with the extension set to `.pdf` instead of to stdout
 
 - Library usage:
     - Allow configuring the fonts & font sizes used for the event texts, day
