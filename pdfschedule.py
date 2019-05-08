@@ -185,6 +185,10 @@ class Schedule:
                 canvas.rect(*ebox.rect(), stroke=1, fill=1)
                 canvas.setFillColorRGB(0,0,0)
 
+                if ev.color[1] <= 0.33333:
+                    # Background color is too dark; print text in white
+                    canvas.setFillColorRGB(1,1,1)
+
                 # Event text:
                 ### TODO: Use PLATYPUS or whatever for this part:
                 text = sum((wrap(t, line_width) for t in ev.text), [])
@@ -332,14 +336,28 @@ def read_events(infile, colors):
         m = re.match(r'^\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*'
                      r'-\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*$', timestr)
         if not m:
-            raise click.UsageError('Invalid time: ' + repr(timestr), err=True)
+            raise click.UsageError('Invalid time: ' + repr(timestr))
         start = time(int(m.group(1)), int(m.group(2) or 0))
         end   = time(int(m.group(3)), int(m.group(4) or 0))
+        if "color" in entry:
+            m = re.fullmatch(
+                r'\s*#?\s*([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})\s*',
+                entry["color"],
+            )
+            if not m:
+                raise click.UsageError('Invalid color: ' + repr(entry["color"]))
+            color = (
+                int(m.group(1), 16) / 255,
+                int(m.group(2), 16) / 255,
+                int(m.group(3), 16) / 255,
+            )
+        else:
+            color = colors[i % len(colors)]
         yield Event(
             start_time = start,
             end_time   = end,
             text       = text,
-            color      = colors[i % len(colors)],
+            color      = color,
             days       = [d for d,rgx in DAY_REGEXES if re.search(rgx, days)],
         )
 

@@ -2,7 +2,6 @@
 - Handle events that go past midnight
 
 - Input format:
-    - Support an optional "color" field in event input dicts
     - Change the input format to a YAML dict of which the list of event dicts
       is one field, the others being font, font size, min & max times, etc.?
     - Add support for 12-hour times

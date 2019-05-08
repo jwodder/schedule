@@ -110,6 +110,12 @@ represents a single weekly event and must contain the following keys:
    are specified in 24-hour format, the minutes being optional (and optionally
    separated from the hour by a colon or period).
 
+``color``
+   *(optional)* The background color of the event's box, given as six
+   hexadecimal digits.  The default background color is either grey or, if
+   ``--color`` is in effect, taken from a small palette of basic colors based
+   on the event's index.
+
 
 Example
 =======
@@ -119,6 +125,7 @@ The following input file::
     - name: Garfield impersonation
       days: M
       time: 7-9
+      color: "FFB04E"
 
     - name: Work to live
       days: MTWRF
@@ -129,18 +136,22 @@ The following input file::
         (The one on Main Street)
       days: M, W, F
       time: 17:00 - 18:00
+      color: "29FF65"
 
     - name: Have they brought back my favorite show yet?
       days: R
       time: 19-19.30
+      color: "FF84DF"
 
     - name: Poor decisions
       days: F
       time: 22-23.59
+      color: "000000"
 
     - name: Sleep in
       days: SatSun
       time: 7-12
+      color: "4226C4"
 
 produces (using the default options) an output file that looks like this:
 

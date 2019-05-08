@@ -1,6 +1,7 @@
 - name: Garfield impersonation
   days: M
   time: 7-9
+  color: "FFB04E"
 
 - name: Work to live
   days: MTWRF
@@ -11,15 +12,19 @@
     (The one on Main Street)
   days: M, W, F
   time: 17:00 - 18:00
+  color: "29FF65"
 
 - name: Have they brought back my favorite show yet?
   days: R
   time: 19-19.30
+  color: "FF84DF"
 
 - name: Poor decisions
   days: F
   time: 22-23.59
+  color: "000000"
 
 - name: Sleep in
   days: SatSun
   time: 7-12
+  color: "4226C4"

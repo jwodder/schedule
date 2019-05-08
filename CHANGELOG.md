@@ -3,6 +3,7 @@ v0.3.0 (in development)
 - `--font` now accepts names of builtin fonts
 - When an input filename is given but no output filename, write to the input
   filename with the extension set to `.pdf` instead of to stdout
+- Events can now have a "color" field to set the background color
 
 v0.2.0 (2019-04-16)
 -------------------
