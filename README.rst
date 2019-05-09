@@ -16,6 +16,7 @@
 `GitHub <https://github.com/jwodder/schedule>`_
 | `PyPI <https://pypi.org/project/pdfschedule/>`_
 | `Issues <https://github.com/jwodder/schedule/issues>`_
+| `Changelog <https://github.com/jwodder/schedule/blob/master/CHANGELOG.md>`_
 
 ``pdfschedule`` is a Python 3 script for creating PDF documents showing
 one's weekly schedule of events.
