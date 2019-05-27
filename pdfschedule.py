@@ -6,7 +6,7 @@ Run ``pdfschedule --help`` or visit <https://github.com/jwodder/schedule> for
 more information.
 """
 
-__version__      = '0.3.0'
+__version__      = '0.4.0.dev1'
 __author__       = 'John Thorvald Wodder II'
 __author_email__ = 'pdfschedule@varonathe.org'
 __license__      = 'MIT'
@@ -197,7 +197,8 @@ class Schedule:
                     tmp_size = ebox.height / len(text) / 1.2
                     canvas.setFontSize(tmp_size)
                     line_height = tmp_size * 1.2
-                y = ebox.lry + ebox.height / 2 + len(text) * line_height / 2
+                y = ebox.lry + ebox.height / 2 + len(text) * line_height / 2 \
+                    + (tmp_size or font_size) / 3
                 for t in text:
                     y -= line_height
                     canvas.drawCentredString(ebox.ulx + day_width/2, y, t)

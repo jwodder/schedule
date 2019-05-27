@@ -1,3 +1,8 @@
+v0.4.0 (in development)
+-----------------------
+- Adjusted the vertical positioning of text so that it no longer intersects the
+  bottom of the event box
+
 v0.3.0 (2019-05-09)
 -------------------
 - `--font` now accepts names of builtin fonts

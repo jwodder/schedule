@@ -10,8 +10,6 @@
 - Output tweaks:
     - Improve the color palette
     - Handle the day headers being too wide for their columns
-    - Fix "squeezing" of overly long text so that the last line doesn't touch
-      the bottom of the box
     - Handle textless entries
 
 - Command-line usage:
