@@ -21,6 +21,8 @@
       headers, and times separately?
     - Change `Schedule` to a `reportlab.*.Flowable` subclass (or factory
       thereof?)
+    - Add a function that takes loaded YAML data, renders a schedule, and
+      returns a `Canvas` object?  Saves a `Canvas` object to a given path?
 
 - Documentation:
     - Add more docstrings

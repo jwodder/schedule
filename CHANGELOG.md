@@ -1,7 +1,8 @@
-v0.4.0 (in development)
------------------------
+v0.3.1 (2020-01-24)
+-------------------
 - Adjusted the vertical positioning of text so that it no longer intersects the
   bottom of the event box
+- Support Python 3.8
 
 v0.3.0 (2019-05-09)
 -------------------
