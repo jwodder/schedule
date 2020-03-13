@@ -1,3 +1,7 @@
+v0.4.0 (in development)
+-----------------------
+- Drop support for Python 3.4
+
 v0.3.1 (2020-01-24)
 -------------------
 - Adjusted the vertical positioning of text so that it no longer intersects the

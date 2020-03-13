@@ -24,7 +24,7 @@ one's weekly schedule of events.
 
 Installation
 ============
-``pdfschedule`` requires Python 3.4 or higher.  Just use `pip
+``pdfschedule`` requires Python 3.5 or higher.  Just use `pip
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install
 ``pdfschedule`` and its dependencies::
 
@@ -156,4 +156,4 @@ The following input file::
 
 produces (using the default options) an output file that looks like this:
 
-.. image:: https://github.com/jwodder/schedule/raw/v0.3.1/examples/example01.png
+.. image:: https://github.com/jwodder/schedule/raw/master/examples/example01.png
