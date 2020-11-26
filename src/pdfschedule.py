@@ -117,7 +117,7 @@ class Schedule:
         time_gap = 0.2 * canvas.stringWidth(':00')
         if show_times:
             time_width = time_gap + max(
-                canvas.stringWidth('{}:00'.format(i)) for i in hours
+                canvas.stringWidth(f'{i}:00') for i in hours
             )
         else:
             time_width = 0
@@ -165,7 +165,7 @@ class Schedule:
                 canvas.drawRightString(
                     sched.ulx - time_gap,
                     sched.uly - (i-min_time)*hour_height - time_size/2,
-                    '{}:00'.format(i),
+                    f'{i}:00',
                 )
 
         # Events:
@@ -331,9 +331,7 @@ def read_events(infile, colors):
             days = entry["days"]
             timestr = entry["time"]
         except KeyError as e:
-            raise click.UsageError(
-                '{!r} field missing from event #{}'.format(str(e), i+1)
-            )
+            raise click.UsageError('{e!r} field missing from event #{i+1}')
         m = re.match(r'^\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*'
                      r'-\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*$', timestr)
         if not m:

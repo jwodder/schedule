@@ -21,7 +21,7 @@ one's weekly schedule of events.
 
 Installation
 ============
-``pdfschedule`` requires Python 3.5 or higher.  Just use `pip
+``pdfschedule`` requires Python 3.6 or higher.  Just use `pip
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install
 ``pdfschedule`` and its dependencies::
 
@@ -116,7 +116,9 @@ represents a single weekly event and must contain the following keys:
 Example
 =======
 
-The following input file::
+The following input file:
+
+.. code:: yaml
 
     - name: Garfield impersonation
       days: M
