@@ -44,32 +44,35 @@ to ``<outfile>`` (defaulting to ``<infile>`` with its file extension changed to
 Options
 -------
 
-- ``-C``, ``--color`` — Color the event boxes various colors instead of just
-  grey.
+-C, --color             Color the event boxes various colors instead of just
+                        grey.
 
-- ``-F <font>``, ``--font <font>`` — Typeset text in the given font.
-  ``<font>`` must be either the name of a builtin PostScript font or the path
-  to a ``.ttf`` file.  By default, text is typeset in Helvetica.
+-F FONT, --font FONT    Typeset text in the given font.  ``FONT`` must be
+                        either the name of a builtin PostScript font or the
+                        path to a ``.ttf`` file.  By default, text is typeset
+                        in Helvetica.
 
-- ``-f <size>``, ``--font-size <size>`` — Set the size of the font used for
-  event information to ``<size>`` (default 10).  The names of the days of the
-  week are typeset at ``<size> * 1.2``; the times of day are typeset at
-  ``<size> / 1.2``.
+-f SIZE, --font-size SIZE
+                        Set the size of the font used for event information to
+                        ``SIZE`` (default 10).  The names of the days of the
+                        week are typeset at ``SIZE * 1.2``; the times of day
+                        are typeset at ``SIZE / 1.2``.
 
-- ``-M``, ``--start-monday`` — Use Monday as the first day of the week instead
-  of Sunday.
+-M, --start-monday      Use Monday as the first day of the week instead of
+                        Sunday.
 
-- ``-p``, ``--portrait`` — Typeset the table in "portrait mode," i.e., with the
-  shorter side of the paper as the width.  The default is to typeset it in
-  "landscape mode."
+-p, --portrait          Typeset the table in "portrait mode," i.e., with the
+                        shorter side of the paper as the width.  The default is
+                        to typeset it in "landscape mode."
 
-- ``-s <factor>``, ``--scale <factor>`` — Divide the length of each side of the
-  table by ``<factor>``.  Without this option, the table fills the whole page,
-  except for a one-inch margin on each side.
+-s FACTOR, --scale FACTOR
+                        Divide the length of each side of the table by
+                        ``FACTOR``.  Without this option, the table fills the
+                        whole page, except for a one-inch margin on each side.
 
-- ``-T``, ``--no-times`` — Do not show the times for each hour line.
+-T, --no-times          Do not show the times for each hour line.
 
-- ``--no-weekends`` — Do not show Sunday and Saturday.
+--no-weekends           Do not show Sunday and Saturday.
 
 
 Input Format
