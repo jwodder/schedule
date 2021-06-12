@@ -1,5 +1,5 @@
-v0.3.3 (in development)
------------------------
+v0.3.3 (2021-06-12)
+-------------------
 - Fix error message displayed when an event is missing a "days" or "time" field
 
 v0.3.2 (2021-05-31)
