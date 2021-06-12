@@ -1,3 +1,7 @@
+v0.3.3 (in development)
+-----------------------
+- Fix error message displayed when an event is missing a "days" or "time" field
+
 v0.3.2 (2021-05-31)
 -------------------
 - Drop support for Python 3.4 and 3.5

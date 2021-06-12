@@ -6,7 +6,7 @@ Run ``pdfschedule --help`` or visit <https://github.com/jwodder/schedule> for
 more information.
 """
 
-__version__      = '0.3.2'
+__version__      = '0.3.3.dev1'
 __author__       = 'John Thorvald Wodder II'
 __author_email__ = 'pdfschedule@varonathe.org'
 __license__      = 'MIT'
@@ -331,7 +331,7 @@ def read_events(infile, colors):
             days = entry["days"]
             timestr = entry["time"]
         except KeyError as e:
-            raise click.UsageError('{e!r} field missing from event #{i+1}')
+            raise click.UsageError(f'{str(e)!r} field missing from event #{i+1}')
         m = re.match(r'^\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*'
                      r'-\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*$', timestr)
         if not m:
