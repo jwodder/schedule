@@ -6,7 +6,7 @@ Run ``pdfschedule --help`` or visit <https://github.com/jwodder/schedule> for
 more information.
 """
 
-__version__ = "0.3.3"
+__version__ = "0.3.4.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "pdfschedule@varonathe.org"
 __license__ = "MIT"

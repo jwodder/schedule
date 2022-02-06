@@ -1,3 +1,7 @@
+v0.3.4 (in development)
+-----------------------
+- Support PyYAML 6.0
+
 v0.3.3 (2021-06-12)
 -------------------
 - Fix error message displayed when an event is missing a "days" or "time" field
