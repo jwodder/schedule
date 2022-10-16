@@ -1,6 +1,7 @@
 - Support events that end at 00:00
 - Handle events that go past midnight
 - Use pydantic to parse the input?
+- Test parsing input
 
 - Input format:
     - Change the input format to a YAML dict of which the list of event dicts

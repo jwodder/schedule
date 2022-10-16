@@ -1,3 +1,7 @@
+v0.4.0 (in development)
+-----------------------
+- Drop support for Python 3.6
+
 v0.3.4 (2022-02-06)
 -------------------
 - Support PyYAML 6.0
