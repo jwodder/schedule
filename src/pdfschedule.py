@@ -259,6 +259,14 @@ class Box:
         return (self.ulx, self.lry, self.width, self.height)
 
 
+def parse_time(s):
+    m = re.fullmatch(r"([0-9]{1,2})(?:[:.]?([0-9]{2}))?", s.strip())
+    if m:
+        return time(int(m[1]), int(m[2] or 0))
+    else:
+        raise ValueError(s)
+
+
 @click.command(context_settings={"help_option_names": ["-h", "--help"]})
 @click.option(
     "-C",
@@ -292,16 +300,18 @@ class Box:
     help="Output in portrait mode instead of landscape",
 )
 @click.option(
-    "-S", 
-    "--start-time", 
-    default=None,
-    help="Start time for each day (HH:MM)" 
+    "-S",
+    "--start-time",
+    type=parse_time,
+    help="Start time for each day",
+    metavar="HH:MM",
 )
 @click.option(
-    "-E", 
-    "--end-time", 
-    default=None,
-    help="End time for each day (HH:MM)" 
+    "-E",
+    "--end-time",
+    type=parse_time,
+    help="End time for each day",
+    metavar="HH:MM",
 )
 @click.option(
     "-s",
@@ -328,7 +338,7 @@ def main(
     no_weekends,
     start_monday,
     start_time,
-    end_time
+    end_time,
 ):
     """
     Weekly schedule typesetter
@@ -372,8 +382,6 @@ def main(
             (1 - factor) * page_height / 2,
         )
         c.scale(factor, factor)
-    start_time = stime_to_hours(start_time)
-    end_time = stime_to_hours(end_time)
     sched.render(
         c,
         x=inch,
@@ -382,22 +390,11 @@ def main(
         height=page_height - 2 * inch,
         font_size=font_size,
         show_times=not no_times,
-        min_time=start_time,
-        max_time=end_time
+        min_time=time2hours(start_time) if start_time is not None else None,
+        max_time=time2hours(end_time) if end_time is not None else None,
     )
     c.showPage()
     c.save()
-
-def stime_to_hours(stime):
-    if stime is not None:
-        t = re.fullmatch(
-                r"([0-9]{1,2})(:|.)([0-9]{2})",
-                stime
-        )
-        if not t:
-            raise click.UsageError("Invalid time: " + repr(stime))
-        t = time2hours(time(int(t.group(1)), int(t.group(3))))
-    return t
 
 
 def read_events(infile, colors):
@@ -411,14 +408,12 @@ def read_events(infile, colors):
             timestr = entry["time"]
         except KeyError as e:
             raise click.UsageError(f"{str(e)!r} field missing from event #{i+1}")
-        m = re.match(
-            r"^\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*" r"-\s*(\d{1,2})(?:[:.]?(\d{2}))?\s*$",
-            timestr,
-        )
-        if not m:
-            raise click.UsageError("Invalid time: " + repr(timestr))
-        start = time(int(m.group(1)), int(m.group(2) or 0))
-        end = time(int(m.group(3)), int(m.group(4) or 0))
+        start_str, _, end_str = timestr.partition("-")
+        try:
+            start = parse_time(start_str)
+            end = parse_time(end_str)
+        except ValueError:
+            raise click.UsageError(f"Invalid time: {timestr!r}")
         if "color" in entry:
             m = re.fullmatch(
                 r"\s*#?\s*([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})\s*",

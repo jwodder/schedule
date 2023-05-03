@@ -16,7 +16,6 @@
 
 - Command-line usage:
     - Make the page size and margins configurable
-    - Support specifying the minimum & maximum times to draw
 
 - Library usage:
     - Allow configuring the fonts & font sizes used for the event texts, day

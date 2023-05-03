@@ -47,6 +47,14 @@ Options
 -C, --color             Color the event boxes various colors instead of just
                         grey.
 
+-E TIME, --end-time TIME
+                        Specify the time of day at which each day should start.
+                        Times are specified in the format ``HH:MM`` using
+                        24-hour time, the minutes being optional (and
+                        optionally separated from the hour by a colon or
+                        period).  Defaults to half an hour before the earliest
+                        event start time or 00:00, whichever is later.
+
 -F FONT, --font FONT    Typeset text in the given font.  ``FONT`` must be
                         either the name of a builtin PostScript font or the
                         path to a ``.ttf`` file.  By default, text is typeset
@@ -69,6 +77,14 @@ Options
                         Divide the length of each side of the table by
                         ``FACTOR``.  Without this option, the table fills the
                         whole page, except for a one-inch margin on each side.
+
+-S TIME, --start-time TIME
+                        Specify the time of day at which each day should end.
+                        Times are specified in the format ``HH:MM`` using
+                        24-hour time, the minutes being optional (and
+                        optionally separated from the hour by a colon or
+                        period).  Defaults to half an hour after the latest
+                        event end time or 24:00, whichever is earlier.
 
 -T, --no-times          Do not show the times for each hour line.
 
