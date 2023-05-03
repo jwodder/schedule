@@ -1,5 +1,5 @@
-v0.4.0 (in development)
------------------------
+v0.4.0 (2023-05-03)
+-------------------
 - Drop support for Python 3.6
 - Support Python 3.11
 - Added `--start-time` and `--end-time` command-line options
