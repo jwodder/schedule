@@ -372,24 +372,8 @@ def main(
             (1 - factor) * page_height / 2,
         )
         c.scale(factor, factor)
-    if start_time is not None:
-        st = re.fullmatch(
-                r"([0-9]{2})(:|.)([0-9]{2})",
-                start_time
-        )
-        if not st:
-            raise click.UsageError("Invalid color: " + repr(start_time))
-        start_time = re.split(':|\.', start_time) 
-        start_time = time(int(st.group(1)), int(st.group(3)))
-    if end_time is not None:
-        st = re.fullmatch(
-                r"([0-9]{2})(:|.)([0-9]{2})",
-                end_time
-        )
-        if not st:
-            raise click.UsageError("Invalid color: " + repr(end_time))
-        end_time = re.split(':|\.', end_time) 
-        end_time = time(int(st.group(1)), int(st.group(3)))
+    start_time = stime_to_hours(start_time)
+    end_time = stime_to_hours(end_time)
     sched.render(
         c,
         x=inch,
@@ -398,11 +382,22 @@ def main(
         height=page_height - 2 * inch,
         font_size=font_size,
         show_times=not no_times,
-        min_time=time2hours(start_time),
-        max_time=time2hours(end_time)
+        min_time=start_time,
+        max_time=end_time
     )
     c.showPage()
     c.save()
+
+def stime_to_hours(stime):
+    if stime is not None:
+        t = re.fullmatch(
+                r"([0-9]{2})(:|.)([0-9]{2})",
+                stime
+        )
+        if not t:
+            raise click.UsageError("Invalid time: " + repr(stime))
+        t = time2hours(time(int(t.group(1)), int(t.group(3))))
+    return t
 
 
 def read_events(infile, colors):
