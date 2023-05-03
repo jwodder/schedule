@@ -391,7 +391,7 @@ def main(
 def stime_to_hours(stime):
     if stime is not None:
         t = re.fullmatch(
-                r"([0-9]{2})(:|.)([0-9]{2})",
+                r"([0-9]{1,2})(:|.)([0-9]{2})",
                 stime
         )
         if not t:
