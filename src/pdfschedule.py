@@ -292,6 +292,18 @@ class Box:
     help="Output in portrait mode instead of landscape",
 )
 @click.option(
+    "-S", 
+    "--start-time", 
+    default=None,
+    help="Start time for each day (HH:MM)" 
+)
+@click.option(
+    "-E", 
+    "--end-time", 
+    default=None,
+    help="End time for each day (HH:MM)" 
+)
+@click.option(
     "-s",
     "--scale",
     type=float,
@@ -315,6 +327,8 @@ def main(
     no_times,
     no_weekends,
     start_monday,
+    start_time,
+    end_time
 ):
     """
     Weekly schedule typesetter
@@ -358,6 +372,8 @@ def main(
             (1 - factor) * page_height / 2,
         )
         c.scale(factor, factor)
+    start_time = stime_to_hours(start_time)
+    end_time = stime_to_hours(end_time)
     sched.render(
         c,
         x=inch,
@@ -366,9 +382,22 @@ def main(
         height=page_height - 2 * inch,
         font_size=font_size,
         show_times=not no_times,
+        min_time=start_time,
+        max_time=end_time
     )
     c.showPage()
     c.save()
+
+def stime_to_hours(stime):
+    if stime is not None:
+        t = re.fullmatch(
+                r"([0-9]{1,2})(:|.)([0-9]{2})",
+                stime
+        )
+        if not t:
+            raise click.UsageError("Invalid time: " + repr(stime))
+        t = time2hours(time(int(t.group(1)), int(t.group(3))))
+    return t
 
 
 def read_events(infile, colors):
