@@ -1,12 +1,14 @@
-.. image:: https://www.repostatus.org/badges/latest/active.svg
+|repostatus| |pyversions| |license|
+
+.. |repostatus| image:: https://www.repostatus.org/badges/latest/active.svg
     :target: https://www.repostatus.org/#active
     :alt: Project Status: Active — The project has reached a stable, usable
           state and is being actively developed.
 
-.. image:: https://img.shields.io/pypi/pyversions/pdfschedule.svg
+.. |pyversions| image:: https://img.shields.io/pypi/pyversions/pdfschedule.svg
     :target: https://pypi.org/project/pdfschedule/
 
-.. image:: https://img.shields.io/github/license/jwodder/schedule.svg
+.. |license| image:: https://img.shields.io/github/license/jwodder/schedule.svg
     :target: https://opensource.org/licenses/MIT
     :alt: MIT License
 
