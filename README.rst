@@ -23,7 +23,7 @@ one's weekly schedule of events.
 
 Installation
 ============
-``pdfschedule`` requires Python 3.7 or higher.  Just use `pip
+``pdfschedule`` requires Python 3.8 or higher.  Just use `pip
 <https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install
 ``pdfschedule`` and its dependencies::
 
