@@ -407,7 +407,7 @@ def read_events(infile, colors):
             days = entry["days"]
             timestr = entry["time"]
         except KeyError as e:
-            raise click.UsageError(f"{str(e)!r} field missing from event #{i+1}")
+            raise click.UsageError(f"{str(e)!r} field missing from event #{i + 1}")
         start_str, _, end_str = timestr.partition("-")
         try:
             start = parse_time(start_str)
