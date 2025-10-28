@@ -1,9 +1,10 @@
 |repostatus| |pyversions| |license|
 
-.. |repostatus| image:: https://www.repostatus.org/badges/latest/active.svg
-    :target: https://www.repostatus.org/#active
-    :alt: Project Status: Active — The project has reached a stable, usable
-          state and is being actively developed.
+.. |repostatus| image:: https://www.repostatus.org/badges/latest/unsupported.svg
+    :target: https://www.repostatus.org/#unsupported
+    :alt: Project Status: Unsupported – The project has reached a stable,
+          usable state but the author(s) have ceased all work on it. A new
+          maintainer may be desired.
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/pdfschedule.svg
     :target: https://pypi.org/project/pdfschedule/
@@ -174,4 +175,4 @@ The following input file:
 
 produces (using the default options) an output file that looks like this:
 
-.. image:: https://github.com/jwodder/schedule/raw/v0.4.1/examples/example01.png
+.. image:: https://github.com/jwodder/schedule/raw/master/examples/example01.png

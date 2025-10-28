@@ -1,3 +1,7 @@
+v0.4.1.post1 (in development)
+-----------------------------
+- Mark as no longer maintained
+
 v0.4.1 (2024-12-01)
 -------------------
 - Support Python 3.12 and 3.13
